@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salvaê</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+</head>
+<body>
+  <div class="header clearfix">
+    <a href="/">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Salvaê" width="100">
+    </a> 
+    <h1>Salvaê</h1>
+    <div class="menu">
+      <a href="/chamados">Chamados</a>
+      <a href="/graficos">Gráficos</a>
+      <a href="/usuarios">Usuários</a>
+    </div>
+  </div>
+
+  <section class="graficos">
+    <div class="grafico"><canvas id="graficoRegiao"></canvas></div>
+    <div class="grafico"><canvas id="graficoNivel"></canvas></div>
+    <div class="grafico"><canvas id="graficoHorario"></canvas></div>
+    <div class="grafico"><canvas id="graficoStatus"></canvas></div>
+  </section>
+
+  <div class="footer">
+    &copy; 2025 - Salvaê | Todos os direitos reservados.
+    <p>Gabriel Wu Castro RM:560210 - Renato Kenji Sugaki RM:559810</p>
+    <P>Fábio Henrique de Souza Eduardo RM:560416 - Turma:1TDSPA</P>
+    <p>Disciplina: Artificial Intelligence e ChatBot</p>
+  </div>
+
+    <script type="application/json" id="dados-chamados">{{ chamados | tojson }}</script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

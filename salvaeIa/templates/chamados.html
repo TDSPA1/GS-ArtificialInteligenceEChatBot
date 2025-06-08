@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salvaê</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <div class="header clearfix">
+    <a href="/">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Salvaê" width="100">
+    </a>
+    <h1>Salvaê</h1>
+    <div class="menu">
+      <a href="/chamados">Chamados</a>
+      <a href="/graficos">Gráficos</a>
+      <a href="/usuarios">Usuários</a>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <section class="filtros">
+    <label>Nível:
+      <select id="filtro-nivel">
+        <option value="">Todos</option>
+        <option value="Simples">Simples</option>
+        <option value="Moderado">Moderado</option>
+        <option value="Difícil">Difícil</option>
+      </select>
+    </label>
+
+    <label>Status:
+      <select id="filtro-status">
+        <option value="">Todos</option>
+        <option value="equipe no local">Equipe no local</option>
+        <option value="pendente">Pendente</option>
+        <option value="equipe a caminho">Equipe a caminho</option>
+        <option value="solucionado">Solucionado</option>
+      </select>
+    </label>
+
+    <label>Região:
+      <select id="filtro-regiao">
+        <option value="">Todas as regiões</option>
+        <option value="Zona Norte">Zona Norte</option>
+        <option value="Zona Sul">Zona Sul</option>
+        <option value="Zona Leste">Zona Leste</option>
+        <option value="Zona Oeste">Zona Oeste</option>
+        <option value="Centro">Centro</option>
+      </select>
+    </label>
+  </section>
+
+  <!-- Cards de Chamados -->
+  <section class="cards" id="chamadoCards"></section>
+
+  <!-- Paginação -->
+  <div class="navegacao">
+    <button id="anterior">< Anterior</button>
+    <span id="paginaAtual">Página 1</span>
+    <button id="proxima">Próxima ></button>
+  </div>
+
+  <!-- Rodapé -->
+  <div class="footer">
+    &copy; 2025 - Salvaê | Todos os direitos reservados.
+    <p>Gabriel Wu Castro RM:560210 - Renato Kenji Sugaki RM:559810</p>
+    <p>Fábio Henrique de Souza Eduardo RM:560416 - Turma:1TDSPA</p>
+    <p>Disciplina: Artificial Intelligence e ChatBot</p>
+  </div>
+
+  <!-- Dados em JSON -->
+  <script type="application/json" id="dados-chamados">{{ chamados | tojson }}</script>
+
+  <!-- JS principal -->
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+  <!-- Script de inicialização -->
+  <script>
+    const chamados = JSON.parse(document.getElementById('dados-chamados').textContent);
+    renderizarPagina(chamados);
+  </script>
+
+</body>
+</html>

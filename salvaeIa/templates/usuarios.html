@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salvaê</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="header clearfix">
+    <a href="/">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Salvaê" width="100">
+    </a> 
+    <h1>Salvaê</h1>
+    <div class="menu">
+      <a href="/chamados">Chamados</a>
+      <a href="/graficos">Gráficos</a>
+      <a href="/usuarios">Usuários</a>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <section class="filtros">
+    <label>Tipo Sanguíneo:
+      <select id="filtro-sangue">
+        <option value="">Todos</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+      </select>
+    </label>
+
+    <label>Sexo:
+      <select id="filtro-sexo">
+        <option value="">Todos</option>
+        <option value="M">Masculino</option>
+        <option value="F">Feminino</option>
+      </select>
+    </label>
+
+    <label>Região:
+      <select id="filtro-regiao">
+        <option value="">Todas as regiões</option>
+        <option value="Zona Norte">Zona Norte</option>
+        <option value="Zona Sul">Zona Sul</option>
+        <option value="Zona Leste">Zona Leste</option>
+        <option value="Zona Oeste">Zona Oeste</option>
+        <option value="Centro">Centro</option>
+      </select>
+    </label>
+  </section>
+
+  <!-- Lista de usuários -->
+  <section class="cards" id="usuarioCards"></section>
+
+  <!-- Navegação -->
+  <div class="navegacao">
+    <button id="anterior">< Anterior</button>
+    <span id="paginaAtual">Página 1</span>
+    <button id="proxima">Próxima ></button>
+  </div>
+
+  <!-- Modal de detalhe -->
+  <div id="modal" class="modal">
+    <div class="modal-conteudo">
+      <span id="fecharModal">&times;</span>
+      <div id="detalhesUsuario"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 - Salvaê | Todos os direitos reservados.
+    <p>Gabriel Wu Castro RM:560210 - Renato Kenji Sugaki RM:559810</p>
+    <P>Fábio Henrique de Souza Eduardo RM:560416 - Turma:1TDSPA</P>
+    <p>Disciplina: Artificial Intelligence e ChatBot</p>
+  </div>
+
+  <!-- Dados ocultos -->
+  <script type="application/json" id="dados-usuarios">{{ usuarios | tojson }}</script>
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='usuarios.js') }}"></script>
+</body>
+</html>
